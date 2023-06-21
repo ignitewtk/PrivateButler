@@ -29,13 +29,13 @@
                 </el-table-column>
                 <el-table-column prop="amount" label="Amount" sortable width="160" />
             </el-table>
-            <el-row>
+            <!-- <el-row>
                 <el-button type="primary">Primary</el-button>
                 <el-button type="success" :icon="Check" circle />
                 <el-button type="info" :icon="Message" circle />
                 <el-button type="warning" :icon="Star" circle />
                 <el-button type="danger" :icon="Delete" circle />
-            </el-row>
+            </el-row> -->
         </el-tab-pane>
         <el-tab-pane label="Dashboard"> Dashboards </el-tab-pane>
         <el-tab-pane label="Management"> Management </el-tab-pane>
@@ -43,18 +43,17 @@
 </template>
 
 <script lang="ts" setup>
-    import {
-        Check,
-        Delete,
-        Edit,
-        Message,
-        Search,
-        Star,
-        } from '@element-plus/icons-vue'
+    // import {
+    //     Check,
+    //     Delete,
+    //     Edit,
+    //     Message,
+    //     Search,
+    //     Star,
+    //     } from '@element-plus/icons-vue'
     import { ref } from 'vue'
     import type { TableColumnCtx, TableInstance } from 'element-plus'
-    import { ca } from 'element-plus/es/locale/index.js';
-import type { Table } from 'element-plus/es/components/index.js';
+
     
     const tabPosition = ref('left')
 
