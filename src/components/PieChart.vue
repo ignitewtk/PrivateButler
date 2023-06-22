@@ -1,61 +1,117 @@
 <template>
-    <div id="pie01"></div>
-
+    <div ref="pieContainer01" style="width: 100%; height: 400px;"></div>
 </template>
 
-<script lang="ts">
-
+<script>
+    
     import * as echarts from 'echarts'
-    type EChartsOption = echarts.EChartsOption;
-
-    var pie01Chart = echarts.init(document.getElementById("pie01")!)
-    var option: EChartsOption
-    option = {
-        tooltip: {
-            trigger: 'item'
+    
+    export default {
+        mounted() {
+            this.renderChart()
         },
-        legend: {
-            top: '5%',
-            left: 'center'
-        },
-        series: [
-            {
-            name: 'Access From',
-            type: 'pie',
-            radius: ['40%', '70%'],
-            avoidLabelOverlap: false,
-            itemStyle: {
-                borderRadius: 10,
-                borderColor: '#fff',
-                borderWidth: 2
-            },
-            label: {
-                show: false,
-                position: 'center'
-            },
-            emphasis: {
-                label: {
-                show: true,
-                fontSize: 40,
-                fontWeight: 'bold'
-                }
-            },
-            labelLine: {
-                show: false
-            },
-            data: [
-                { value: 1048, name: 'Search Engine' },
-                { value: 735, name: 'Direct' },
-                { value: 580, name: 'Email' },
-                { value: 484, name: 'Union Ads' },
-                { value: 300, name: 'Video Ads' }
-            ]
+        methods: {
+            renderChart() {
+                const pieContainer01 = this.$refs.chartContainer;
+                var pie01Chart = echarts.init(pieContainer01)
+                var option;
+                option = {
+                    tooltip: {
+                        trigger: 'item'
+                    },
+                    legend: {
+                        top: '5%',
+                        left: 'center'
+                    },
+                    series: [
+                        {
+                        name: 'Access From',
+                        type: 'pie',
+                        radius: ['40%', '70%'],
+                        avoidLabelOverlap: false,
+                        itemStyle: {
+                            borderRadius: 10,
+                            borderColor: '#fff',
+                            borderWidth: 2
+                        },
+                        label: {
+                            show: false,
+                            position: 'center'
+                        },
+                        emphasis: {
+                            label: {
+                            show: true,
+                            fontSize: 40,
+                            fontWeight: 'bold'
+                            }
+                        },
+                        labelLine: {
+                            show: false
+                        },
+                        data: [
+                            { value: 1048, name: 'Search Engine' },
+                            { value: 735, name: 'Direct' },
+                            { value: 580, name: 'Email' },
+                            { value: 484, name: 'Union Ads' },
+                            { value: 300, name: 'Video Ads' }
+                        ]
+                        }
+                    ]
+                };
+                option && myChart.setOption(option);
             }
-        ]
-        };
-    option && pie01Chart.setOption(option);
+        }
+    }
+    
+
+    // type EChartsOption = echarts.EChartsOption;
+
+    // var pieDom = document.getElementById("pie01")!
+    // var pie01Chart = echarts.init(pieDom)
+    // var option: EChartsOption
+
+    // option = {
+    //     tooltip: {
+    //         trigger: 'item'
+    //     },
+    //     legend: {
+    //         top: '5%',
+    //         left: 'center'
+    //     },
+    //     series: [
+    //         {
+    //         name: 'Access From',
+    //         type: 'pie',
+    //         radius: ['40%', '70%'],
+    //         avoidLabelOverlap: false,
+    //         itemStyle: {
+    //             borderRadius: 10,
+    //             borderColor: '#fff',
+    //             borderWidth: 2
+    //         },
+    //         label: {
+    //             show: false,
+    //             position: 'center'
+    //         },
+    //         emphasis: {
+    //             label: {
+    //             show: true,
+    //             fontSize: 40,
+    //             fontWeight: 'bold'
+    //             }
+    //         },
+    //         labelLine: {
+    //             show: false
+    //         },
+    //         data: [
+    //             { value: 1048, name: 'Search Engine' },
+    //             { value: 735, name: 'Direct' },
+    //             { value: 580, name: 'Email' },
+    //             { value: 484, name: 'Union Ads' },
+    //             { value: 300, name: 'Video Ads' }
+    //         ]
+    //         }
+    //     ]
+    //     };
+    // option && pie01Chart.setOption(option);
 </script>
-
-<style>
-
-</style>

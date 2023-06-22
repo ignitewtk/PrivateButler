@@ -61,12 +61,14 @@
                         </div>
                     </el-card>
                 </el-row>
-
-
+                <div id="pieContainer01" style="margin: 10px; background-color: white; width: 300px; height: 350px;"></div>
+                <div id="barContainer01" style="margin: 10px; background-color: white; width: 500px; height: 400px;"></div>
             </div>
+            
         </el-tab-pane>
         <el-tab-pane label="Management"> Management </el-tab-pane>
     </el-tabs>
+    
 </template>
 
 <script lang="ts" setup>
@@ -81,6 +83,7 @@
         Money
         } from '@element-plus/icons-vue'
     import { onMounted, ref } from 'vue'
+    import * as echarts from 'echarts'
 
     const value1 = ref('')
 
@@ -116,6 +119,93 @@
             amount: 23.44
         },
     ]
+
+    const initPieChart = () => {
+        type EChartsOption = echarts.EChartsOption;
+
+        var chartDom = document.getElementById('pieContainer01')!;
+        var myChart = echarts.init(chartDom);
+        var option: EChartsOption;
+        option = {
+        tooltip: {
+            trigger: 'item'
+        },
+        legend: {
+            top: '5%',
+            left: 'center'
+        },
+        series: [
+            {
+            name: 'Access From',
+            type: 'pie',
+            radius: ['40%', '70%'],
+            avoidLabelOverlap: false,
+            itemStyle: {
+                borderRadius: 10,
+                borderColor: '#fff',
+                borderWidth: 2
+            },
+            label: {
+                show: false,
+                position: 'center'
+            },
+            emphasis: {
+                label: {
+                show: true,
+                fontSize: 40,
+                fontWeight: 'bold'
+                }
+            },
+            labelLine: {
+                show: false
+            },
+            data: [
+                { value: 1048, name: 'Search Engine' },
+                { value: 735, name: 'Direct' },
+                { value: 580, name: 'Email' },
+                { value: 484, name: 'Union Ads' },
+                { value: 300, name: 'Video Ads' }
+            ]
+            }
+        ]
+        };
+
+        option && myChart.setOption(option);
+    }
+
+    const initBarChart = () => {
+        type EChartsOption = echarts.EChartsOption;
+
+        var chartDom = document.getElementById('barContainer01')!;
+        var myChart = echarts.init(chartDom);
+        var option: EChartsOption;
+        option = {
+            legend: {},
+            tooltip: {},
+            dataset: {
+                source: [
+                ['product', '2015', '2016', '2017'],
+                ['Matcha Latte', 43.3, 85.8, 93.7],
+                ['Milk Tea', 83.1, 73.4, 55.1],
+                ['Cheese Cocoa', 86.4, 65.2, 82.5],
+                ['Walnut Brownie', 72.4, 53.9, 39.1]
+                ]
+            },
+            xAxis: { type: 'category' },
+            yAxis: {},
+            // Declare several bar series, each will be mapped
+            // to a column of dataset.source by default.
+            series: [{ type: 'bar' }, { type: 'bar' }, { type: 'bar' }]
+        };
+
+        option && myChart.setOption(option);
+    }
+
+    onMounted(() => {
+        initPieChart()
+        initBarChart()
+    })
+    
 </script>
 
 <style>
